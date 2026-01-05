@@ -1,221 +1,194 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Para Emilly ❤️</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Emilly ❤️</title>
 
-  <style>
-    /* Bloqueia visualização em telas grandes */
-    @media (min-width: 768px) {
-      body::before {
-        content: "Esta página foi feita para ser vista apenas no celular 💕";
-        position: fixed;
-        inset: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 2rem;
-        font-size: 1.2rem;
-        background: #000;
-        color: #fff;
-        z-index: 9999;
-      }
-    }
+<style>
+@media (min-width: 768px) {
+  body::before {
+    content: "Esta página foi feita para ser vista apenas no celular 💕";
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    color: #fff;
+    z-index: 9999;
+    text-align: center;
+    padding: 2rem;
+  }
+}
 
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(180deg, #6a1b9a, #000);
-      color: #fff;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(180deg, #6a1b9a, #000);
+  color: #fff;
+}
 
-    header {
-      padding: 1.5rem 1rem 1rem;
-      text-align: center;
-      font-size: 1.6rem;
-      font-weight: 600;
-    }
+/* HEADER */
+header {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
 
-    header span {
-      display: block;
-      font-size: 1rem;
-      margin-top: 0.4rem;
-      opacity: 0.9;
-    }
+header span {
+  display: block;
+  font-size: 1rem;
+  margin-top: .3rem;
+  opacity: .9;
+}
 
-    .intro {
-      text-align: center;
-      padding: 0 1.5rem 1.5rem;
-      font-size: 1rem;
-      line-height: 1.5;
-      color: #e1bee7;
-      animation: fadeIn 1.8s ease;
-    }
+/* SEÇÃO */
+section {
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+}
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+.section-text {
+  width: 80%;
+  text-align: center;
+  color: #e1bee7;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
 
-    main {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+/* CARROSSEL */
+.carousel {
+  width: 80%;
+  max-width: 320px;
+  aspect-ratio: 3 / 4;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.4);
+}
 
-    /* Timeline */
-    .timeline {
-      width: 85%;
-      max-width: 340px;
-      aspect-ratio: 3 / 4;
-      position: relative;
-      overflow: hidden;
-      border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-      background: #000;
-    }
+.carousel img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.05);
+  transition: opacity 1s ease, transform 1s ease;
+}
 
-    .moment {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      transform: scale(1.05);
-      transition: opacity 1s ease, transform 1s ease;
-    }
+.carousel img.active {
+  opacity: 1;
+  transform: scale(1);
+}
 
-    .moment.active {
-      opacity: 1;
-      transform: scale(1);
-    }
+/* LINHA DO TEMPO */
+.timeline-connector {
+  display: flex;
+  justify-content: center;
+  padding: 2.5rem 0;
+}
 
-    .moment img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+.line {
+  width: 4px;
+  height: 120px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0),
+    #e1bee7,
+    rgba(255,255,255,0)
+  );
+  border-radius: 10px;
+}
 
-    .caption {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      padding: 1rem;
-      background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
-      text-align: center;
-    }
+/* FOOTER */
+footer {
+  padding: 2rem 1rem;
+  text-align: center;
+  font-size: .95rem;
+}
 
-    .caption h3 {
-      margin: 0 0 0.3rem;
-      font-size: 1.1rem;
-    }
-
-    .caption p {
-      margin: 0;
-      font-size: 0.9rem;
-      opacity: 0.9;
-    }
-
-    footer {
-      padding: 1.5rem 1rem 2rem;
-      text-align: center;
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-
-    footer strong {
-      display: block;
-      margin-top: 0.5rem;
-      font-size: 1.05rem;
-    }
-  </style>
+footer strong {
+  display: block;
+  margin-top: .4rem;
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    Para a mulher que ilumina meus dias ✨
-    <span>Emilly ❤️</span>
-  </header>
+<header>
+  Para a mulher que ilumina meus dias ✨
+  <span>Emilly ❤️</span>
+</header>
 
-  <div class="intro">
-    Entre o Natal e o Ano Novo, algo mudou.<br>
-    Foi ali que começou a nossa história.
-  </div>
-
-  <main>
-    <div class="timeline">
-
-      <div class="moment active">
-        <img src="images/fim2025/capa.jpeg" alt="Início">
-        <div class="caption">
-          <h3>Entre o Natal e o Ano Novo 🎄✨</h3>
-          <p>Onde tudo começou…</p>
-        </div>
-      </div>
-
-      <div class="moment">
-        <img src="images/fim2025/ela.jpeg" alt="Ela">
-        <div class="caption">
-          <h3>Ela ❤️</h3>
-          <p>O sorriso que mudou meus dias.</p>
-        </div>
-      </div>
-
-      <div class="moment">
-        <img src="images/fim2025/nos1.jpeg" alt="Nós">
-        <div class="caption">
-          <h3>Nós</h3>
-          <p>Os primeiros momentos juntos.</p>
-        </div>
-      </div>
-
-      <div class="moment">
-        <img src="images/fim2025/nos2.jpeg" alt="Nós">
-        <div class="caption">
-          <h3>Nós</h3>
-          <p>Quando tudo começou a fazer sentido.</p>
-        </div>
-      </div>
-
-      <div class="moment">
-        <img src="images/fim2025/nos3.jpeg" alt="Nós">
-        <div class="caption">
-          <h3>Nós</h3>
-          <p>O coração já tinha escolhido.</p>
-        </div>
-      </div>
-
-      <div class="moment">
-        <img src="images/fim2025/nos4.jpeg" alt="Namoro">
-        <div class="caption">
-          <h3>O início do nosso namoro 💕</h3>
-          <p>E desde então, é você.</p>
-        </div>
-      </div>
-
+<!-- FASE 1 -->
+<section>
+  <div>
+    <div class="section-text">
+      Outubro a Dezembro.<br>
+      Quando a gente ainda estava se conhecendo…
     </div>
-  </main>
 
-  <footer>
-    Em cada detalhe, em cada sorriso e em cada momento…
-    <strong>é você que eu escolho todos os dias. 💕</strong>
-  </footer>
+    <div class="carousel" id="carousel1">
+      <img src="images/amor1.jpeg" class="active">
+      <img src="images/eu2.jpeg">
+      <img src="images/amor2.jpeg">
+      <img src="images/eu3.jpeg">
+      <img src="images/amor3.jpeg">
+      <img src="images/amor4.jpeg">
+    </div>
+  </div>
+</section>
 
-  <script>
-    const moments = document.querySelectorAll('.moment');
-    let index = 0;
+<!-- CONECTOR DO TEMPO -->
+<div class="timeline-connector">
+  <div class="line"></div>
+</div>
 
-    setInterval(() => {
-      moments[index].classList.remove('active');
-      index = (index + 1) % moments.length;
-      moments[index].classList.add('active');
-    }, 4000);
-  </script>
+<!-- FASE 2 -->
+<section>
+  <div>
+    <div class="section-text">
+      Entre o Natal e o Ano Novo…<br>
+      nasceu algo que mudou tudo.
+    </div>
+
+    <div class="carousel" id="carousel2">
+      <img src="images/fim2025/capa.jpeg" class="active">
+      <img src="images/fim2025/ela.jpeg">
+      <img src="images/fim2025/nos1.jpeg">
+      <img src="images/fim2025/nos2.jpeg">
+      <img src="images/fim2025/nos3.jpeg">
+      <img src="images/fim2025/nos4.jpeg">
+    </div>
+  </div>
+</section>
+
+<footer>
+  O tempo passou.<br>
+  <strong>E foi você que ficou. 💕</strong>
+</footer>
+
+<script>
+function startCarousel(id, interval = 3000) {
+  const images = document.querySelectorAll(`#${id} img`);
+  let index = 0;
+
+  setInterval(() => {
+    images[index].classList.remove('active');
+    index = (index + 1) % images.length;
+    images[index].classList.add('active');
+  }, interval);
+}
+
+startCarousel('carousel1', 2800);
+startCarousel('carousel2', 3200);
+</script>
 
 </body>
 </html>
