@@ -6,10 +6,7 @@
 <title>Para Emilly ❤️</title>
 
 <style>
-/* BÔNUS */
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 @media (min-width: 768px) {
   body::before {
@@ -49,7 +46,7 @@ header span {
   opacity: .9;
 }
 
-/* SECTION BASE */
+/* SECTIONS */
 section {
   padding: 2rem 0;
   display: flex;
@@ -69,10 +66,16 @@ section {
   text-align: center;
   color: #e1bee7;
   line-height: 1.5;
+  margin-bottom: .3rem;
+}
+
+.section-date {
+  font-size: .85rem;
+  opacity: .75;
   margin-bottom: 1rem;
 }
 
-/* CARROSSEL */
+/* CAROUSEL */
 .carousel {
   width: 100%;
   aspect-ratio: 3 / 4;
@@ -98,7 +101,7 @@ section {
   transform: scale(1);
 }
 
-/* LINHA DO TEMPO ANIMADA */
+/* TIMELINE */
 .timeline-connector {
   display: flex;
   justify-content: center;
@@ -106,7 +109,7 @@ section {
 }
 
 .line-wrapper {
-  height: 140px;
+  height: 160px;
   position: relative;
 }
 
@@ -157,8 +160,10 @@ section {
 <section>
   <div class="section-container">
     <div class="section-text">
-      Outubro a Dezembro.<br>
-      Quando a gente ainda estava se conhecendo…
+      Quando tudo começou de forma simples…
+    </div>
+    <div class="section-date">
+      25 de outubro de 2025
     </div>
 
     <div class="carousel" id="carousel1">
@@ -172,7 +177,7 @@ section {
   </div>
 </section>
 
-<!-- LINHA DO TEMPO -->
+<!-- TIMELINE -->
 <div class="timeline-connector">
   <div class="line-wrapper">
     <div class="line-bg"></div>
@@ -184,8 +189,11 @@ section {
 <section id="fase2">
   <div class="section-container">
     <div class="section-text">
-      Entre o Natal e o Ano Novo…<br>
-      nasceu algo que mudou tudo.
+      Entre o Natal e o Ano Novo,<br>
+      eu tive certeza.
+    </div>
+    <div class="section-date">
+      01 de janeiro de 2026
     </div>
 
     <div class="carousel" id="carousel2">
@@ -201,16 +209,19 @@ section {
 
 <!-- FINAL -->
 <div class="final">
-  <h2>O tempo passou…</h2>
+  <h2>Foi ali que eu te escolhi.</h2>
   <p>
-    mas a escolha foi simples.<br>
-    <strong>É você.</strong><br><br>
-    E eu quero viver todos os próximos capítulos ao seu lado. 💕
+    E desde então,<br>
+    cada dia faz mais sentido ao seu lado.<br><br>
+    <strong>Eu te amo. 💕</strong>
   </p>
 </div>
 
+<!-- MÚSICA -->
+<audio id="music" src="audio/iris.mp3" preload="auto"></audio>
+
 <script>
-/* CARROSSEL */
+/* CAROUSEL */
 function startCarousel(id, interval) {
   const images = document.querySelectorAll(`#${id} img`);
   let index = 0;
@@ -222,23 +233,25 @@ function startCarousel(id, interval) {
   }, interval);
 }
 
-/* PRIMEIRO COMEÇA IMEDIATO */
 startCarousel('carousel1', 2800);
 
-/* SEGUNDO SOMENTE NO SCROLL */
+/* SECOND PHASE OBSERVER */
 let secondStarted = false;
 const fase2 = document.getElementById('fase2');
+const music = document.getElementById('music');
+music.volume = 0.35;
 
 const observer = new IntersectionObserver(entries => {
   if (entries[0].isIntersecting && !secondStarted) {
     startCarousel('carousel2', 3200);
+    music.play().catch(() => {});
     secondStarted = true;
   }
 }, { threshold: 0.4 });
 
 observer.observe(fase2);
 
-/* LINHA DO TEMPO ANIMADA */
+/* TIMELINE SCROLL */
 const lineFill = document.getElementById('lineFill');
 const connector = document.querySelector('.timeline-connector');
 
