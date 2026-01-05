@@ -6,6 +6,11 @@
 <title>Para Emilly ❤️</title>
 
 <style>
+/* BÔNUS */
+* {
+  box-sizing: border-box;
+}
+
 @media (min-width: 768px) {
   body::before {
     content: "Esta página foi feita para ser vista apenas no celular 💕";
@@ -44,15 +49,23 @@ header span {
   opacity: .9;
 }
 
-/* SEÇÃO */
+/* SECTION BASE */
 section {
   padding: 2rem 0;
   display: flex;
   justify-content: center;
 }
 
+.section-container {
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .section-text {
-  width: 80%;
+  width: 100%;
   text-align: center;
   color: #e1bee7;
   line-height: 1.5;
@@ -61,8 +74,7 @@ section {
 
 /* CARROSSEL */
 .carousel {
-  width: 80%;
-  max-width: 320px;
+  width: 100%;
   aspect-ratio: 3 / 4;
   position: relative;
   overflow: hidden;
@@ -86,35 +98,50 @@ section {
   transform: scale(1);
 }
 
-/* LINHA DO TEMPO */
+/* LINHA DO TEMPO ANIMADA */
 .timeline-connector {
   display: flex;
   justify-content: center;
-  padding: 2.5rem 0;
+  padding: 3rem 0;
 }
 
-.line {
+.line-wrapper {
+  height: 140px;
+  position: relative;
+}
+
+.line-bg {
   width: 4px;
-  height: 120px;
-  background: linear-gradient(
-    to bottom,
-    rgba(255,255,255,0),
-    #e1bee7,
-    rgba(255,255,255,0)
-  );
+  height: 100%;
+  background: rgba(255,255,255,.15);
   border-radius: 10px;
 }
 
-/* FOOTER */
-footer {
-  padding: 2rem 1rem;
-  text-align: center;
-  font-size: .95rem;
+.line-fill {
+  position: absolute;
+  bottom: 0;
+  width: 4px;
+  height: 0;
+  background: #e1bee7;
+  border-radius: 10px;
+  transition: height .1s linear;
 }
 
-footer strong {
-  display: block;
-  margin-top: .4rem;
+/* FINAL */
+.final {
+  padding: 4rem 1.5rem 5rem;
+  text-align: center;
+}
+
+.final h2 {
+  font-size: 1.6rem;
+  margin-bottom: .6rem;
+}
+
+.final p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #e1bee7;
 }
 </style>
 </head>
@@ -128,7 +155,7 @@ footer strong {
 
 <!-- FASE 1 -->
 <section>
-  <div>
+  <div class="section-container">
     <div class="section-text">
       Outubro a Dezembro.<br>
       Quando a gente ainda estava se conhecendo…
@@ -145,14 +172,17 @@ footer strong {
   </div>
 </section>
 
-<!-- CONECTOR DO TEMPO -->
+<!-- LINHA DO TEMPO -->
 <div class="timeline-connector">
-  <div class="line"></div>
+  <div class="line-wrapper">
+    <div class="line-bg"></div>
+    <div class="line-fill" id="lineFill"></div>
+  </div>
 </div>
 
 <!-- FASE 2 -->
-<section>
-  <div>
+<section id="fase2">
+  <div class="section-container">
     <div class="section-text">
       Entre o Natal e o Ano Novo…<br>
       nasceu algo que mudou tudo.
@@ -169,25 +199,59 @@ footer strong {
   </div>
 </section>
 
-<footer>
-  O tempo passou.<br>
-  <strong>E foi você que ficou. 💕</strong>
-</footer>
+<!-- FINAL -->
+<div class="final">
+  <h2>O tempo passou…</h2>
+  <p>
+    mas a escolha foi simples.<br>
+    <strong>É você.</strong><br><br>
+    E eu quero viver todos os próximos capítulos ao seu lado. 💕
+  </p>
+</div>
 
 <script>
-function startCarousel(id, interval = 3000) {
+/* CARROSSEL */
+function startCarousel(id, interval) {
   const images = document.querySelectorAll(`#${id} img`);
   let index = 0;
 
-  setInterval(() => {
+  return setInterval(() => {
     images[index].classList.remove('active');
     index = (index + 1) % images.length;
     images[index].classList.add('active');
   }, interval);
 }
 
+/* PRIMEIRO COMEÇA IMEDIATO */
 startCarousel('carousel1', 2800);
-startCarousel('carousel2', 3200);
+
+/* SEGUNDO SOMENTE NO SCROLL */
+let secondStarted = false;
+const fase2 = document.getElementById('fase2');
+
+const observer = new IntersectionObserver(entries => {
+  if (entries[0].isIntersecting && !secondStarted) {
+    startCarousel('carousel2', 3200);
+    secondStarted = true;
+  }
+}, { threshold: 0.4 });
+
+observer.observe(fase2);
+
+/* LINHA DO TEMPO ANIMADA */
+const lineFill = document.getElementById('lineFill');
+const connector = document.querySelector('.timeline-connector');
+
+window.addEventListener('scroll', () => {
+  const rect = connector.getBoundingClientRect();
+  const viewHeight = window.innerHeight;
+
+  if (rect.top < viewHeight && rect.bottom > 0) {
+    const visible = Math.min(viewHeight - rect.top, rect.height);
+    const percent = Math.max(0, visible / rect.height);
+    lineFill.style.height = `${percent * 100}%`;
+  }
+});
 </script>
 
 </body>
