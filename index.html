@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Para Emilly ❤️</title>
+
   <style>
     /* Bloqueia visualização em telas grandes */
     @media (min-width: 768px) {
@@ -26,16 +27,15 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(180deg, #6a1b9a, #000000);
+      background: linear-gradient(180deg, #6a1b9a, #000);
       color: #fff;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
-      overflow-x: hidden;
     }
 
     header {
-      padding: 1.5rem 1rem 0.8rem;
+      padding: 1.5rem 1rem 1rem;
       text-align: center;
       font-size: 1.6rem;
       font-weight: 600;
@@ -44,19 +44,17 @@
     header span {
       display: block;
       font-size: 1rem;
-      font-weight: 400;
-      margin-top: 0.5rem;
+      margin-top: 0.4rem;
       opacity: 0.9;
     }
 
-    .season-message {
+    .intro {
       text-align: center;
+      padding: 0 1.5rem 1.5rem;
       font-size: 1rem;
-      padding: 0 1.5rem 1.2rem;
-      line-height: 1.4;
+      line-height: 1.5;
       color: #e1bee7;
-      text-shadow: 0 0 8px rgba(225,190,231,0.4);
-      animation: fadeIn 2s ease;
+      animation: fadeIn 1.8s ease;
     }
 
     @keyframes fadeIn {
@@ -67,35 +65,59 @@
     main {
       flex: 1;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
     }
 
-    .carousel {
+    /* Timeline */
+    .timeline {
       width: 85%;
-      max-width: 320px;
+      max-width: 340px;
       aspect-ratio: 3 / 4;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
       position: relative;
-      background: #fff;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      background: #000;
     }
 
-    .carousel img {
+    .moment {
       position: absolute;
       inset: 0;
+      opacity: 0;
+      transform: scale(1.05);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .moment.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .moment img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0;
-      transition: opacity 0.8s ease-in-out, transform 1s ease;
-      transform: scale(1.05);
     }
 
-    .carousel img.active {
-      opacity: 1;
-      transform: scale(1);
+    .caption {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+      text-align: center;
+    }
+
+    .caption h3 {
+      margin: 0 0 0.3rem;
+      font-size: 1.1rem;
+    }
+
+    .caption p {
+      margin: 0;
+      font-size: 0.9rem;
+      opacity: 0.9;
     }
 
     footer {
@@ -110,47 +132,9 @@
       margin-top: 0.5rem;
       font-size: 1.05rem;
     }
-  
-
-    /* Efeitos visuais */
-    .snowflake {
-      position: fixed;
-      top: -10px;
-      color: #fff;
-      font-size: 1em;
-      user-select: none;
-      pointer-events: none;
-      animation: fall linear infinite;
-      z-index: 1000;
-    }
-
-    @keyframes fall {
-      from {
-        transform: translateY(-10px);
-      }
-      to {
-        transform: translateY(110vh);
-      }
-    }
-
-    .firework {
-      position: fixed;
-      width: 6px;
-      height: 6px;
-      background: radial-gradient(circle, #fff, transparent);
-      border-radius: 50%;
-      animation: explode 1.2s ease-out forwards;
-      pointer-events: none;
-      z-index: 1000;
-    }
-
-    @keyframes explode {
-      0% { transform: scale(0); opacity: 1; }
-      80% { opacity: 1; }
-      100% { transform: scale(12); opacity: 0; }
-    }
   </style>
 </head>
+
 <body>
 
   <header>
@@ -158,20 +142,62 @@
     <span>Emilly ❤️</span>
   </header>
 
-    <div class="season-message">
-    ✨ Feliz Natal 🎄 e um Ano Novo cheio de amor, sonhos e momentos ao seu lado ✨
+  <div class="intro">
+    Entre o Natal e o Ano Novo, algo mudou.<br>
+    Foi ali que começou a nossa história.
   </div>
 
   <main>
-    <div class="carousel">
-      <!-- Substitua os src pelas fotos de vocês -->
-      <img src="images/amor1.jpeg" class="active" />
-      <!--<img src="images/eu1.jpeg" />-->
-      <img src="images/amor2.jpeg" />
-      <img src="images/eu2.jpeg" />
-      <img src="images/amor3.jpeg" />
-      <img src="images/eu3.jpeg" />
-      <img src="images/amor4.jpeg" />
+    <div class="timeline">
+
+      <div class="moment active">
+        <img src="images/fim2025/capa.jpeg" alt="Início">
+        <div class="caption">
+          <h3>Entre o Natal e o Ano Novo 🎄✨</h3>
+          <p>Onde tudo começou…</p>
+        </div>
+      </div>
+
+      <div class="moment">
+        <img src="images/fim2025/ela.jpeg" alt="Ela">
+        <div class="caption">
+          <h3>Ela ❤️</h3>
+          <p>O sorriso que mudou meus dias.</p>
+        </div>
+      </div>
+
+      <div class="moment">
+        <img src="images/fim2025/nos1.jpeg" alt="Nós">
+        <div class="caption">
+          <h3>Nós</h3>
+          <p>Os primeiros momentos juntos.</p>
+        </div>
+      </div>
+
+      <div class="moment">
+        <img src="images/fim2025/nos2.jpeg" alt="Nós">
+        <div class="caption">
+          <h3>Nós</h3>
+          <p>Quando tudo começou a fazer sentido.</p>
+        </div>
+      </div>
+
+      <div class="moment">
+        <img src="images/fim2025/nos3.jpeg" alt="Nós">
+        <div class="caption">
+          <h3>Nós</h3>
+          <p>O coração já tinha escolhido.</p>
+        </div>
+      </div>
+
+      <div class="moment">
+        <img src="images/fim2025/nos4.jpeg" alt="Namoro">
+        <div class="caption">
+          <h3>O início do nosso namoro 💕</h3>
+          <p>E desde então, é você.</p>
+        </div>
+      </div>
+
     </div>
   </main>
 
@@ -179,91 +205,16 @@
     Em cada detalhe, em cada sorriso e em cada momento…
     <strong>é você que eu escolho todos os dias. 💕</strong>
   </footer>
-<!--
+
   <script>
-  (function () {
-    // ===== Carrossel =====
-    const carouselImages = document.querySelectorAll('.carousel img');
-    let currentIndex = 0;
+    const moments = document.querySelectorAll('.moment');
+    let index = 0;
 
     setInterval(() => {
-      carouselImages[currentIndex].classList.remove('active');
-      currentIndex = (currentIndex + 1) % carouselImages.length;
-      carouselImages[currentIndex].classList.add('active');
-    }, 3000);
-
-    // ===== Neve (Natal) =====
-    function createSnowflake() {
-      const snowflake = document.createElement('div');
-      snowflake.className = 'snowflake';
-      snowflake.textContent = '❄';
-      snowflake.style.left = Math.random() * 100 + 'vw';
-      snowflake.style.animationDuration = 4 + Math.random() * 4 + 's';
-      snowflake.style.opacity = Math.random().toString();
-      snowflake.style.fontSize = 12 + Math.random() * 18 + 'px';
-      document.body.appendChild(snowflake);
-
-      setTimeout(() => snowflake.remove(), 9000);
-    }
-
-    setInterval(createSnowflake, 250);
-
-    // ===== Fogos (Ano Novo) =====
-    function createFirework() {
-      const firework = document.createElement('div');
-      firework.className = 'firework';
-      firework.style.left = Math.random() * 100 + 'vw';
-      firework.style.top = Math.random() * 60 + 'vh';
-      firework.style.background = 'radial-gradient(circle, #ffd700, transparent)';
-      document.body.appendChild(firework);
-
-      setTimeout(() => firework.remove(), 1200);
-    }
-
-    setInterval(createFirework, 2000);
-  })();
-</script>
--->
-  <script>
-    // Carrossel
-    const images = document.querySelectorAll('.carousel img');
-    let current = 0;
-
-    setInterval(() => {
-      images[current].classList.remove('active');
-      current = (current + 1) % images.length;
-      images[current].classList.add('active');
-    }, 3000);
-
-    // Neve (Natal)
-    function createSnowflake() {
-      const snowflake = document.createElement('div');
-      snowflake.className = 'snowflake';
-      snowflake.innerText = '❄';
-      snowflake.style.left = Math.random() * 100 + 'vw';
-      snowflake.style.animationDuration = 3 + Math.random() * 5 + 's';
-      snowflake.style.opacity = Math.random();
-      snowflake.style.fontSize = 10 + Math.random() * 20 + 'px';
-      document.body.appendChild(snowflake);
-
-      setTimeout(() => snowflake.remove(), 8000);
-    }
-
-    setInterval(createSnowflake, 200);
-
-    // Fogos (Ano Novo)
-    function createFirework() {
-      const firework = document.createElement('div');
-      firework.className = 'firework';
-      firework.style.left = Math.random() * 100 + 'vw';
-      firework.style.top = Math.random() * 60 + 'vh';
-      firework.style.background = 'radial-gradient(circle, #ffd700, transparent)';
-      document.body.appendChild(firework);
-
-      setTimeout(() => firework.remove(), 1300);
-    }
-
-    setInterval(createFirework, 1800);
+      moments[index].classList.remove('active');
+      index = (index + 1) % moments.length;
+      moments[index].classList.add('active');
+    }, 4000);
   </script>
 
 </body>
