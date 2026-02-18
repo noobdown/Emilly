@@ -108,6 +108,13 @@ section {
   padding: 3rem 0;
 }
 
+/* TIMELINE */
+.timeline-connector2 {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 0;
+}
+
 .line-wrapper {
   height: 160px;
   position: relative;
@@ -208,10 +215,10 @@ section {
 </section>
 
 <!-- TIMELINE -->
-<div class="timeline-connector">
+<div class="timeline-connector2">
   <div class="line-wrapper">
     <div class="line-bg"></div>
-    <div class="line-fill" id="lineFill"></div>
+    <div class="line-fill" id="lineFill2"></div>
   </div>
 </div>
 
@@ -306,6 +313,21 @@ window.addEventListener('scroll', () => {
     const visible = Math.min(viewHeight - rect.top, rect.height);
     const percent = Math.max(0, visible / rect.height);
     lineFill.style.height = `${percent * 100}%`;
+  }
+});
+
+/* TIMELINE SCROLL */
+const lineFill2 = document.getElementById('lineFill2');
+const connector2 = document.querySelector('.timeline-connector2');
+
+window.addEventListener('scroll', () => {
+  const rect = connector2.getBoundingClientRect();
+  const viewHeight = window.innerHeight;
+
+  if (rect.top < viewHeight && rect.bottom > 0) {
+    const visible = Math.min(viewHeight - rect.top, rect.height);
+    const percent = Math.max(0, visible / rect.height);
+    lineFill2.style.height = `${percent * 100}%`;
   }
 });
 </script>
