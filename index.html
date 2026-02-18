@@ -207,6 +207,28 @@ section {
   </div>
 </section>
 
+<!-- FASE 3 -->
+<section id="fase3">
+  <div class="section-container">
+    <div class="section-text">
+      Feliz aniversário, meu amor! ❤️<br>
+      Você é meu lugar favorito no mundo e neste dia eu só quero te ver sorrindo o dia inteiro. Te amo demais! 🥰
+    </div>
+    <div class="section-date">
+      17 de Fevereiro de 2026
+    </div>
+
+    <div class="carousel" id="carousel3">
+      <img src="images/aniversario/aniversario1.jpeg" class="active">
+      <img src="images/aniversario/aniversario5.jpeg">
+      <img src="images/aniversario/aniversario6.jpeg">
+      <img src="images/aniversario/aniversario4.jpeg">
+      <img src="images/aniversario/aniversario3.jpeg">
+      <img src="images/aniversario/aniversario2.jpeg">
+    </div>
+  </div>
+</section>
+
 <!-- FINAL -->
 <div class="final">
   <h2>Foi ali que eu te escolhi.</h2>
@@ -250,6 +272,19 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.4 });
 
 observer.observe(fase2);
+
+/* THIRD PHASE OBSERVER */
+let thirdStarted = false;
+const fase3 = document.getElementById('fase3');
+
+const observer3 = new IntersectionObserver(entries => {
+  if (entries[0].isIntersecting && !thirdStarted) {
+    startCarousel('carousel3', 3200);
+    thirdStarted = true;
+  }
+}, { threshold: 0.4 });
+
+observer3.observe(fase3);
 
 /* TIMELINE SCROLL */
 const lineFill = document.getElementById('lineFill');
